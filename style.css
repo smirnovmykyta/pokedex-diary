@@ -90,10 +90,6 @@ header {
   margin: 0 auto;
 }
 
-@media and (max-width: 600px) {
-  
-}
-
 .card-item {
   background-image: radial-gradient(rgb(238, 155, 55) 50%, rgb(200, 50, 0));
   border: 0.5rem solid rgba(150, 90, 20, 1);
@@ -159,8 +155,6 @@ header {
       }
     }
   }
-
-  
 
   .shine {
     position: absolute;

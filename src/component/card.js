@@ -1,7 +1,6 @@
-// testArr =   [{},{},{},{}]
-// cardBilder\creatCart
+import { setAndRemoveAsFavorite } from "../helper/storageWorker.js";
 
-const createCard = (pokemon) => {
+export const createCard = (pokemon) => {
   // create an html-element
   function createElement(
     typ,
@@ -61,9 +60,13 @@ const createCard = (pokemon) => {
   let card_title_span_4 = createElement(
     "SPAN",
     "",
-    `span_${pokemon.id}_4`, //! BUTTON
+    "setAndRemove-favorite", //! BUTTON
     "&hearts;"
   );
+
+  card_title_span_4.addEventListener("click", (e) => {
+    setAndRemoveAsFavorite(pokemon.id);
+  });
 
   // append all card_item childs
   card_title.appendChild(card_title_span_1);
