@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./src/test_andwit/style.css" rel="stylesheet" />
+    <script src="./src/component/card.js"></script>
+    <script src="./src/component/cardList.js"></script>
+    <script src="./src/test_andwit/init.js"></script>
+    <title>PokeDex-Diary</title>
+  </head>
+  <body class="">
+    <header class="rounded-xl m-4">
+      <nav class="flex flex-row p-4 text-center justify-between items-center">
+        <h1 class="tail">PokeDex-Diary</h1>
+        <form class="w-1/2" action="">
+          <input
+            type="text"
+            class="w-4/5 search p-2 rounded-xl"
+            id="search"
+            placeholder="Search"
+          />
+        </form>
+        <span class="w-1/4">
+          <a
+            class="border text-white block py-2 px-2 rounded-xl hover:bg-yellow-700 transition ease-in-out delay-150"
+            href=""
+            >Journal</a
+          >
+        </span>
+      </nav>
+    </header>
+    <main>
+      <div id="card-list" class="card-list"></div>
+    </main>
+    <footer>
+      <span>Test Poke Api</span>
+    </footer>
+  </body>
 </html>
