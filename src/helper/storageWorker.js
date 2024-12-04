@@ -8,7 +8,6 @@ export function saveToLocalStorage(pokemonList)
         console.error("Invalid data passed to saveToLocalStorage:", pokemonList);
         return;
     }
-    // console.log("Saving to Local Storage:", pokemonList);
     localStorage.setItem(storageKey, JSON.stringify(pokemonList));
 }
 
@@ -16,7 +15,6 @@ export function saveToLocalStorage(pokemonList)
 export function getAllPokemon()
 {
     const data = JSON.parse(localStorage.getItem(storageKey)) || [];
-    // console.log("Retrieved from Local Storage:", data);
     return data;
 }
 
@@ -31,20 +29,17 @@ export function getFavorites()
 export function setAndRemoveAsFavorite(pokemonId)
 {
     const allPokemon = getAllPokemon();
-    const updatedPokemon = allPokemon.map(pokemon =>
-        pokemon.id === pokemonId ? pokemon.favorite === true ? { ...pokemon, favorite: false } : { ...pokemon, favorite: true } : pokemon
-    );
-
-    saveToLocalStorage(updatedPokemon)
+    const updatedPokemon = allPokemon.map(pokemon => pokemon.id === pokemonId ? pokemon.favorite === true ? { ...pokemon, favorite: false } : { ...pokemon, favorite: true } : pokemon);
+    saveToLocalStorage(updatedPokemon);
 }
 
 //? ____________________________________________________________________________
 //? Fügt zusätzliche PokemonDaten hinzu oder aktualisiert bestehende (OPTIONAL)
-export function updatePokemon(pokemonId, updates)
-{
-    const allPokemon = getAllPokemon();
-    const updatedPokemon = allPokemon.map((pokemon) =>
-        pokemon.id === pokemonId ? { ...pokemon, ...updates } : pokemon
-    );
-    saveToLocalStorage(updatedPokemon);
-}
+// export function updatePokemon(pokemonId, updates)
+// {
+//     const allPokemon = getAllPokemon();
+//     const updatedPokemon = allPokemon.map((pokemon) =>
+//         pokemon.id === pokemonId ? { ...pokemon, ...updates } : pokemon
+//     );
+//     saveToLocalStorage(updatedPokemon);
+// }
