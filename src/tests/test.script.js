@@ -1,5 +1,5 @@
 import { fetchAllPokemon } from "../services/pokemonApi.js";
-import { saveToLocalStorage, getAllPokemon, setFavorite, getFavorites, removeFavorite, setAndRemoveAsFavorite } from "../helper/storageWorker.js";
+import { saveToLocalStorage, getAllPokemon, getFavorites, setAndRemoveAsFavorite } from "../helper/storageWorker.js";
 
 const output = document.getElementById("output");
 
