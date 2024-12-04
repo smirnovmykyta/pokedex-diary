@@ -8,7 +8,7 @@ export function saveToLocalStorage(pokemonList)
         console.error("Invalid data passed to saveToLocalStorage:", pokemonList);
         return;
     }
-    console.log("Saving to Local Storage:", pokemonList);
+    // console.log("Saving to Local Storage:", pokemonList);
     localStorage.setItem(storageKey, JSON.stringify(pokemonList));
 }
 
@@ -16,7 +16,7 @@ export function saveToLocalStorage(pokemonList)
 export function getAllPokemon()
 {
     const data = JSON.parse(localStorage.getItem(storageKey)) || [];
-    console.log("Retrieved from Local Storage:", data);
+    // console.log("Retrieved from Local Storage:", data);
     return data;
 }
 
@@ -27,28 +27,15 @@ export function getFavorites()
     return allPokemon.filter((pokemon) => pokemon.favorite);
 }
 
-//* Setzt den FavoritenStatus eines Pokémon
-export function setFavorite(pokemonId, isFavorite)
+//* Setzt den FavoritenStatus eines Pokemon auf true oder false
+export function setAndRemoveAsFavorite(pokemonId)
 {
-    console.log(`Setting favorite for ID: ${pokemonId} to ${isFavorite}`);
     const allPokemon = getAllPokemon();
-    const updatedPokemon = allPokemon.map((pokemon) =>
-        pokemon.id === pokemonId ? { ...pokemon, favorite: isFavorite } : pokemon
+    const updatedPokemon = allPokemon.map(pokemon =>
+        pokemon.id === pokemonId ? pokemon.favorite === true ? { ...pokemon, favorite: false } : { ...pokemon, favorite: true } : pokemon
     );
-    console.log("Updated Pokemon List:", updatedPokemon);
-    saveToLocalStorage(updatedPokemon);
-}
 
-//* Setzt den Status eines Favorisierten Pokemons wieder auf false (damit es nicht mehr unter Favoriten aufgelistet wird)
-export function removeFavorite(pokemonId)
-{
-    console.log(`Removing favorite for ID: ${pokemonId}`);
-    const allPokemon = getAllPokemon();
-    const updatedPokemon = allPokemon.map((pokemon) =>
-        pokemon.id === pokemonId ? { ...pokemon, favorite: false } : pokemon
-    );
-    console.log("Updated Pokemon List after removing favorite:", updatedPokemon);
-    saveToLocalStorage(updatedPokemon);
+    saveToLocalStorage(updatedPokemon)
 }
 
 //? ____________________________________________________________________________

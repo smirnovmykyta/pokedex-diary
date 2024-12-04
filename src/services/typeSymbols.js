@@ -1,0 +1,21 @@
+export const typeSymbols = 
+{
+    normal: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/normal.svg",
+    fire: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/",
+    water: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/water.svg",
+    electric: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/electric.svg",
+    grass: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/grass.svg",
+    ice: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/ice.svg",
+    fighting: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/fighting.svg",
+    poison: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/poison.svg",
+    ground: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/ground.svg",
+    flying: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/flying.svg",
+    psychic: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/psychic.svg",
+    bug: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/bug.svg",
+    rock: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/rock.svg",
+    ghost: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/ghost.svg",
+    dragon: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/dragon.svg",
+    dark: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/dark.svg",
+    steel: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/steel.svg",
+    fairy: "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/fairy.svg",
+};
