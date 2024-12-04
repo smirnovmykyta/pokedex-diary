@@ -29,7 +29,6 @@ const createCard = (pokemon) => {
       element.setAttribute("src", pokemon.sprite);
     }
 
-    console.log(element);
     return element;
   }
   // create card_item
@@ -45,21 +44,24 @@ const createCard = (pokemon) => {
     `span_${pokemon.id}_1`,
     pokemon.id
   );
+
   let card_title_span_2 = createElement(
     "SPAN",
     "",
     `span_${pokemon.id}_2`,
     pokemon.name
   );
+
   let card_title_span_3 = createElement(
     "SPAN",
     "shine",
     `span_${pokemon.id}_3`
   );
+
   let card_title_span_4 = createElement(
     "SPAN",
     "",
-    `span_${pokemon.id}_4`,
+    `span_${pokemon.id}_4`, //! BUTTON
     "&hearts;"
   );
 
@@ -79,7 +81,7 @@ const createCard = (pokemon) => {
   card_image.appendChild(card_img);
 
   //create card_type
-  let card_type = createElement("DIV", "card-power", "", "", "");
+  let card_type = createElement("DIV", "card-power", "", "", ""); //!card-power
 
   //create all card_type childs and append to parent
   pokemon.types.forEach((type) => {

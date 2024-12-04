@@ -1,14 +1,11 @@
 import { pokeApiUrl, artworkUrl } from "./config.js";
+import { typeSymbols } from "./typeSymbols.js";
 
 export async function fetchAllPokemon()
 {
     try
     {
-        console.log(`Fetching Pokemon list from API: ${pokeApiUrl}`);
-
-        //? Optional || zum zeigen/testen t!m3r 😎 --> (wird später entfernt)
-        const startTime = new Date();
-
+        // console.log(`Fetching Pokemon list from API: ${pokeApiUrl}`);
         const response = await fetch(pokeApiUrl);
         if (!response.ok)
         {
@@ -21,8 +18,6 @@ export async function fetchAllPokemon()
         {
             console.log(`Fetching details for Pokemon: ${pokemon?.name}\nURL: ${pokemon?.url}`);
 
-            const pokemonStartTime = new Date();
-
             const detailsResponse = await fetch(pokemon?.url);
             if (!detailsResponse.ok)
             {
@@ -30,35 +25,43 @@ export async function fetchAllPokemon()
             }
             const data = await detailsResponse.json();
 
-            //? Optional || Endzeit für den Pokemon Aufruf --> (wird später entfernt)
-            const pokemonEndTime = new Date();
-            console.log(`Time taken to fetch details for ${pokemon?.name}: ${(pokemonEndTime - pokemonStartTime) / 1000}s`);
+            const typesWithSymbols = data?.types?.map((type) => ({
+                name: type.type.name,
+                symbol: typeSymbols[type.type.name] || null, //* Symbol aus'm Mapping || null, wenn nix da
+            }));
 
-            //! Lösbar eventuell mit Fetch und Promise || Tests durchFühren und FehlerAnalyse via console.logs 🤓😻
+            const abilitiesWithDescriptions = await Promise.all(
+                data?.abilities?.map(async (ability) =>
+                {
+                    const abilityResponse = await fetch(ability.ability.url);
+                    if (!abilityResponse.ok)
+                    {
+                        console.warn(`Failed to fetch ability details for "${ability.ability.name}".`);
+                        return { name: ability.ability.name, description: null };
+                    }
+                    const abilityData = await abilityResponse.json();
+                    const description = abilityData.effect_entries.find((entry) => entry.language.name === "en")?.effect;
+                    return { name: ability.ability.name, description: description || "No description available" };
+                })
+            );
+
             //TODO: ErweiterungsMöglichkeiten aus der API die Deutschen Namen der Pokemon zu erhalten 😢😭
             //TODO: ErweiterungsMöglichkeit Deutsche Typen abzurufen 😢😭
             //TODO: ErweiterungsMöglichkeit Deutsche Fähigkeiten abzurufen 😢😭
-
             //* Benötigte Daten aus dem Objekt beziehen (id, name, abilities, types, picture)
             return { //? Bei Verwendung Deutscher Typen Inhalt der Variablen anpassen z.B. "name: germanName"
                 id: data.id,
                 name: data.name,
-                abilities: data?.abilities?.map((ability) => ability?.ability?.name),
-                types: data?.types?.map((type) => type?.type?.name),
+                abilities: abilitiesWithDescriptions,
+                types: typesWithSymbols,
                 sprite: `${artworkUrl}${data.id}.png`, //? Das in der Gruppe abgesprochene Bild 👍
                 favorite: false, //* Standardwert für Favoriten || IdeaByAndre 😎
             };
-
         });
 
         //* Alle promises von pokemonList.map müssen aufgelöst werden, für jeden fetch Aufruf
         const pokemonDetails = await Promise.all(promises);
         // console.log(pokemonDetails);
-
-        //? Optional || Endzeit für die gesamte Operation --> (wird später entfernt)
-        const endTime = new Date();
-        console.log(`Total time to fetch all Pokemon: ${(endTime - startTime) / 1000}s`);
-
         return pokemonDetails;
     }
     catch (error)
@@ -67,7 +70,6 @@ export async function fetchAllPokemon()
             error.message,
             {
                 source: pokeApiUrl,
-                timestamp: new Date().toISOString(),
             });
         throw error;
     }
@@ -83,7 +85,3 @@ export async function fetchAllPokemon()
 //? damit z.B. ein Pokemon by ID z.B. selected werden kann und dann den zusätzlichen wert :true bekommen kann,
 //? damit man es in favoriten anzeigen kann
 //? und halt auch den wert in dem lokal storage wieder auf false setzen kann
-
-//Todo: Bilder/Grafiken von den ganzen Typen besorgen, z.B. Grass, Feuer, Elektro, Psycho
-//Todo: Die API nach den geheimen Bildern durchforsten 😎
-//Todo: Finde den geheimen PokemonBall der sich so cool animiert 😎
