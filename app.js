@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function initLoad() {
     const pokemonList = await fetchAllPokemon();
-    console.log("Fetched Pokemon List:", pokemonList);
+    // console.log("Fetched Pokemon List:", pokemonList);
 
     if (!Array.isArray(pokemonList) || pokemonList.length === 0) {
       console.error("No Pokemon data to save!");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     saveToLocalStorage(pokemonList);
-    console.log("PokemonList stored in LocalStorage:");
+    // console.log("PokemonList stored in LocalStorage:");
   }
   
   initLoad();

@@ -14,9 +14,9 @@ export async function fetchAllPokemon() {
 
     //* Für jedes Pokemon die Details abrufen
     const promises = pokemonList.map(async (pokemon) => {
-      console.log(
-        `Fetching details for Pokemon: ${pokemon?.name}\nURL: ${pokemon?.url}`
-      );
+      // console.log(
+      //   `Fetching details for Pokemon: ${pokemon?.name}\nURL: ${pokemon?.url}`
+      // );
 
       const detailsResponse = await fetch(pokemon?.url);
       if (!detailsResponse.ok) {
