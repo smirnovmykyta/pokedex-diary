@@ -154,9 +154,14 @@ header {
         color: red;
       }
     }
-  }
 
-  
+    &.first-upper {
+      letter-spacing: 1px;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
 
   .shine {
     position: absolute;
@@ -224,6 +229,7 @@ header {
   max-width: 100%;
 
   span {
+    position: relative;
     display: block;
     background-color: white;
     width: 100%;
@@ -233,6 +239,15 @@ header {
     border-radius: 0.5rem;
     border: 0.25rem solid rgb(240, 210, 170);
     font-size: 0.8rem;
+
+    img {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      top: 2px;
+      left: 2px;
+    }
   }
 }
 
@@ -241,11 +256,24 @@ header {
   background-color: white;
   border-radius: 1rem;
   border: 0.25rem solid rgb(240, 210, 170);
-  padding: 0.5rem;
-  overflow: hidden;
+  padding: 0 0.7rem;
+  overflow: scroll;
 
   span {
     font-size: 0.8rem;
+    &.ability-name {
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      background-color: rgb(240, 210, 170);
+      margin: 0.4rem 0;
+      border-radius: 0.4rem;
+      padding: 0.2rem;
+    }
+    &.ability-description {
+      display: block;
+      text-align: justify;
+    }
   }
 }
 

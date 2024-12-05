@@ -1,14 +1,18 @@
-// testArr =   [{},{},{},{}]
-// cardBilder\creatCart
+import {
+  getAllPokemon,
+  setAndRemoveAsFavorite,
+} from "../helper/storageWorker.js";
+import { typeSymbols } from "../services/typeSymbols.js";
 
-const createCard = (pokemon) => {
+export const createCard = (pokemon) => {
   // create an html-element
   function createElement(
     typ,
     classString,
     id = -1,
     textContent = "",
-    src = ""
+    link_src = "",
+    innerHTML = ""
   ) {
     const element = document.createElement(typ);
     element.className = classString;
@@ -25,8 +29,13 @@ const createCard = (pokemon) => {
       element.textContent = "♥";
     }
 
-    if (src != "") {
-      element.setAttribute("src", pokemon.sprite);
+    if (link_src != "") {
+      // console.log(link_src);
+      element.src = link_src;
+    }
+
+    if (innerHTML != "") {
+      element.innerHTML = innerHTML;
     }
 
     return element;
@@ -47,7 +56,7 @@ const createCard = (pokemon) => {
 
   let card_title_span_2 = createElement(
     "SPAN",
-    "",
+    "first-upper",
     `span_${pokemon.id}_2`,
     pokemon.name
   );
@@ -61,9 +70,25 @@ const createCard = (pokemon) => {
   let card_title_span_4 = createElement(
     "SPAN",
     "",
-    `span_${pokemon.id}_4`, //! BUTTON
+    "setAndRemove-favorite", //! BUTTON
     "&hearts;"
   );
+
+  card_title_span_4.addEventListener("click", (e) => {
+    setAndRemoveAsFavorite(pokemon.id);
+
+    let allPoke = getAllPokemon();
+
+    allPoke.forEach((poke) => {
+      if (poke.id === pokemon.id)
+        if (poke.favorite === true) {
+          e.target.classList.add("favorite");
+          return;
+        } else {
+          e.target.classList.remove("favorite");
+        }
+    });
+  });
 
   // append all card_item childs
   card_title.appendChild(card_title_span_1);
@@ -81,21 +106,42 @@ const createCard = (pokemon) => {
   card_image.appendChild(card_img);
 
   //create card_type
-  let card_type = createElement("DIV", "card-power", "", "", ""); //!card-power
+  let card_type = createElement("DIV", "card-power", "", "", "");
 
   //create all card_type childs and append to parent
   pokemon.types.forEach((type) => {
-    let card_type_span = createElement("SPAN", "", "", type);
-    card_type.appendChild(card_type_span);
+    let card_type_span_name = createElement("SPAN", "", "", type.name);
+    let card_type_span_symbol = createElement(
+      "IMG",
+      "",
+      "",
+      "",
+      typeSymbols[type.name]
+    );
+
+    card_type_span_name.appendChild(card_type_span_symbol);
+    card_type.appendChild(card_type_span_name);
   });
 
   //create card_abitlities
   let card_abitlities = createElement("DIV", "card-text");
-
+  console.log(pokemon.abilities);
   //create all card_abitlities childs and append to parent
   pokemon.abilities.forEach((ability) => {
-    let card_abitlities_span = createElement("SPAN", "", "", ability);
-    card_abitlities.appendChild(card_abitlities_span);
+    let card_abitlities_span_name = createElement(
+      "SPAN",
+      "ability-name",
+      "",
+      ability.name
+    );
+    let card_abitlities_span_description = createElement(
+      "SPAN",
+      "ability-description",
+      "",
+      ability.description
+    );
+    card_abitlities.appendChild(card_abitlities_span_name);
+    card_abitlities.appendChild(card_abitlities_span_description);
   });
 
   // append all card_* to card_item
