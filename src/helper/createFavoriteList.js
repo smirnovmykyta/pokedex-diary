@@ -1,6 +1,5 @@
-import {getFavorites} from "./storageWorker";
+import {createCardList} from "../component/cardList.js";
 
-export default function createFavoriteList() {
-    const favoriteList = getFavorites();
-
+export function createFavoriteList(pokemons) {
+    createCardList(pokemons);
 }
