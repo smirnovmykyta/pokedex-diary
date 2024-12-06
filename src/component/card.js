@@ -82,7 +82,7 @@ export const createCard = (pokemon) => {
 
   card_title_span_4.addEventListener("click", (e) => {
         setAndRemoveAsFavorite(pokemon.id);
-
+        const pageType = document.body.dataset.page;
         let allPoke = getAllPokemon();
 
         allPoke.forEach((poke) => {
@@ -94,6 +94,12 @@ export const createCard = (pokemon) => {
                     e.target.classList.remove("favorite");
                 }
         });
+
+        if(pageType === "favorite") {
+            const element = document.getElementById(`poke_${pokemon.id}`);
+            console.log(element)
+            element.remove();
+        }
     });
 
     // append all card_item childs
