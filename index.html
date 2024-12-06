@@ -3,38 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./src/test_andwit/style.css" rel="stylesheet" />
-    <script src="./src/component/card.js"></script>
-    <script src="./src/component/cardList.js"></script>
-    <script src="./src/test_andwit/init.js"></script>
+    <link href="style.css" rel="stylesheet" />
     <title>PokeDex-Diary</title>
   </head>
-  <body class="">
-    <header class="">
-      <nav class="">
-        <h1 class="">PokeDex-Diary</h1>
-        <form class="" action="">
-          <input
-            type="text"
-            class=""
-            id="search"
-            placeholder="Search"
-          />
-        </form>
-        <span class="w-1/4">
-          <a
-            class=""
-            href=""
-            >Journal</a
-          >
-        </span>
-      </nav>
-    </header>
+  <body data-page="home" class="">
+  <div id="header"></div>
     <main>
       <div id="card-list" class="card-list"></div>
     </main>
-    <footer>
-      <span>Test Poke Api</span>
-    </footer>
+  <div id="footer"></div>
+    <script type="module" src="./src/component/card.js"></script>
+    <script type="module" src="./src/component/cardList.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
