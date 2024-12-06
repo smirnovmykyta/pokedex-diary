@@ -1,7 +1,6 @@
 import {fetchAllPokemon} from "./src/services/pokemonApi.js";
-import {getFavorites, saveToLocalStorage} from "./src/helper/storageWorker.js";
+import {getFavorites, saveToLocalStorage, getAllPokemon} from "./src/helper/storageWorker.js";
 import {createCardList} from "./src/component/cardList.js";
-import {getAllPokemon} from "./src/helper/storageWorker.js";
 import {createFavoriteList} from "./src/helper/createFavoriteList.js";
 import {search} from "./src/helper/search.js";
 
@@ -39,6 +38,7 @@ function setupSearchListener() {
                 } else {
                     console.warn("No results found for query:", query);
                 }
+                searchInput.value = '';
             }
         }
     });
