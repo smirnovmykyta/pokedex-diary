@@ -3,7 +3,7 @@
   "source": "index.html",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html favorite.html header.html footer.html"
+    "build": "parcel build index.html src/public/favorite.html src/public/header.html src/public/footer.html"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
