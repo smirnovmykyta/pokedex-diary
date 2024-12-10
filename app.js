@@ -68,7 +68,7 @@ async function initializePage() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadHTML("header", "/header.html");
-    loadHTML("footer", "/footer.html");
+    loadHTML("header", "/src/public/header.html");
+    loadHTML("footer", "/src/public/footer.html");
     initializePage();
 });
