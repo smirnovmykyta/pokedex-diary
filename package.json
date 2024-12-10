@@ -1,9 +1,9 @@
 {
-  "name": "my-parcel-app",
+  "name": "pokedex-diary",
   "source": "index.html",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build"
+    "build": "parcel build index.html favorite.html header.html footer.html"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
